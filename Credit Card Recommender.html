@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Your HTML head content -->
+    <title>Credit Card Recommendation</title>
 </head>
 <body>
+    <h1>Credit Card Recommendation</h1>
     <form id="recommendationForm">
         Preferred Bank: <input type="text" id="preferredBank"><br>
         Preferred Category: <input type="text" id="preferredCategory"><br>
@@ -12,7 +13,6 @@
         <button type="button" onclick="getRecommendations()">Get Recommendations</button>
     </form>
     <div id="recommendations"></div>
-
     <script>
         function getRecommendations() {
             const preferredBank = document.getElementById('preferredBank').value;
@@ -20,8 +20,7 @@
             const expectedFee = parseFloat(document.getElementById('expectedFee').value);
             const salary = parseFloat(document.getElementById('salary').value);
 
-            // Send the input data to the server for processing
-            fetch('https://script.google.com/macros/s/AKfycbw07VVdewQWRDqbankUurMlZNYQIE-ZUaKZkEaFNLoQzxI0cpvSpVSy-egvxR7Wn7U/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbysgYScI7AWwDApHrvsASKT0awOpFNKPPtmbY0QhKjsuETMdbTbLHIVgYNnQnsO_Pk/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,8 +36,8 @@
                     recommendationsDiv.textContent = 'No recommendations found.';
                 } else {
                     data.forEach(card => {
-                        const cardInfo = `${card.CardName} - ${card.Features}`;
-                        const cardLink = `<a href="${card.Link}" target="_blank">Link</a>`;
+                        const cardInfo = `${card.cardName} - ${card.features}`;
+                        const cardLink = `<a href="${card.link}" target="_blank">Link</a>`;
                         recommendationsDiv.innerHTML += `${cardInfo} (${cardLink})<br>`;
                     });
                 }
