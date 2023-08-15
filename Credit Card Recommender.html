@@ -4,7 +4,7 @@
     <title>Credit Card Recommendation</title>
 </head>
 <body>
-    <h1>Credit Card Recommendation</h1>
+    <h1>Credit Card Recommendatio</h1>
     <form id="recommendationForm">
         Preferred Bank: <input type="text" id="preferredBank"><br>
         Preferred Category: <input type="text" id="preferredCategory"><br>
@@ -14,21 +14,24 @@
     </form>
     <div id="recommendations"></div>
     <script>
-        function getRecommendations() {
-            const preferredBank = document.getElementById('preferredBank').value;
-            const preferredCategory = document.getElementById('preferredCategory').value;
-            const expectedFee = parseFloat(document.getElementById('expectedFee').value);
-            const salary = parseFloat(document.getElementById('salary').value);
+    function getRecommendations() {
+        const preferredBank = document.getElementById('preferredBank').value;
+        const preferredCategory = document.getElementById('preferredCategory').value;
+        const expectedFee = parseFloat(document.getElementById('expectedFee').value);
+        const salary = parseFloat(document.getElementById('salary').value);
 
-            fetch('https://script.google.com/macros/s/AKfycbzsw5mU581BE-9ZAQsO1qUzhxKtWr3GfnlaFYTmJw/dev', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ preferredBank, preferredCategory, expectedFee, salary })
-            })
-            .then(response => response.json())
-            .then(data => {
+        console.log("Sending data:", { preferredBank, preferredCategory, expectedFee, salary });
+
+        fetch('YOUR_DEPLOYED_WEB_APP_URL', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ preferredBank, preferredCategory, expectedFee, salary })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Received data:", data);
                 const recommendationsDiv = document.getElementById('recommendations');
                 recommendationsDiv.innerHTML = '';
 
