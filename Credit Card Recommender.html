@@ -4,7 +4,7 @@
     <title>Credit Card Recommendation</title>
 </head>
 <body>
-    <h1>Credit Card Recommendatio</h1>
+    <h1>Credit Card Recommendation</h1>
     <form id="recommendationForm">
         Preferred Bank: <input type="text" id="preferredBank"><br>
         Preferred Category: <input type="text" id="preferredCategory"><br>
@@ -22,7 +22,7 @@
 
         console.log("Sending data:", { preferredBank, preferredCategory, expectedFee, salary });
 
-        fetch('YOUR_DEPLOYED_WEB_APP_URL', {
+        fetch('https://script.google.com/macros/s/AKfycbysgYScI7AWwDApHrvsASKT0awOpFNKPPtmbY0QhKjsuETMdbTbLHIVgYNnQnsO_Pk/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
