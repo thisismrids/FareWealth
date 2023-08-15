@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your HTML head content -->
+</head>
+<body>
+    <form id="recommendationForm">
+        Preferred Bank: <input type="text" id="preferredBank"><br>
+        Preferred Category: <input type="text" id="preferredCategory"><br>
+        Expected Fee: <input type="number" id="expectedFee"><br>
+        Salary: <input type="number" id="salary"><br>
+        <button type="button" onclick="getRecommendations()">Get Recommendations</button>
+    </form>
+    <div id="recommendations"></div>
+
+    <script>
+        function getRecommendations() {
+            const preferredBank = document.getElementById('preferredBank').value;
+            const preferredCategory = document.getElementById('preferredCategory').value;
+            const expectedFee = parseFloat(document.getElementById('expectedFee').value);
+            const salary = parseFloat(document.getElementById('salary').value);
+
+            // Send the input data to the server for processing
+            fetch('https://script.google.com/macros/s/AKfycbw07VVdewQWRDqbankUurMlZNYQIE-ZUaKZkEaFNLoQzxI0cpvSpVSy-egvxR7Wn7U/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ preferredBank, preferredCategory, expectedFee, salary })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const recommendationsDiv = document.getElementById('recommendations');
+                recommendationsDiv.innerHTML = '';
+
+                if (data.length === 0) {
+                    recommendationsDiv.textContent = 'No recommendations found.';
+                } else {
+                    data.forEach(card => {
+                        const cardInfo = `${card.CardName} - ${card.Features}`;
+                        const cardLink = `<a href="${card.Link}" target="_blank">Link</a>`;
+                        recommendationsDiv.innerHTML += `${cardInfo} (${cardLink})<br>`;
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
