@@ -162,6 +162,30 @@ a:hover {
 }
 
 /*---------------------------------------
+  Banner
+-----------------------------------------*/
+.new-banner {
+    background-color: #ff0000; /* Choose your desired background color */
+    color: #ffffff; /* Choose text color that contrasts well with the background */
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    vertical-align: super; /* This makes the text superscript */
+    animation: blinkAnimation 5s infinite; /* Apply the blinking animation */
+}
+
+@keyframes blinkAnimation {
+    0%, 50%, 100% {
+        opacity: 1; /* Fully visible */
+    }
+    25%, 75% {
+        opacity: 0; /* Invisible */
+    }
+}
+
+
+
+/*---------------------------------------
   CUSTOM LINK
 -----------------------------------------*/
 .custom-links {
@@ -550,6 +574,29 @@ strong {
 }
 
 /*---------------------------------------
+  Google Form
+-----------------------------------------*/
+.responsive-iframe-container {
+        position: relative;
+        overflow: hidden;
+        padding-top: 75%; /* 16:9 aspect ratio */
+    }
+
+    .responsive-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .col-lg-8 {
+            width: 100%;
+        }
+    }
+
+/*---------------------------------------
   CONTACT
 -----------------------------------------*/
 .contact-info {
@@ -585,7 +632,7 @@ strong {
 
 .map-iframe {
   display: block;
-  
+
 }
 
 /*---------------------------------------
