@@ -1,6 +1,6 @@
 
   (function ($) {
-  
+
   "use strict";
 
     // AOS ANIMATIONS
@@ -8,13 +8,13 @@
 
     // NAVBAR
     $('.navbar-nav .nav-link').click(function(){
-        $(".navbar-collapse").collapse('hide');
+        $(".navbar-collapse :not(.dropdown-toggle)").collapse('hide');
     });
 
     // NEWS IMAGE RESIZE
     function NewsImageResize(){
       $(".navbar").scrollspy({ offset: -76 });
-      
+
       var LargeImage = $('.large-news-image').height();
 
       var MinusHeight = LargeImage - 6;
@@ -38,7 +38,5 @@
         }
       }
     });
-    
-  })(window.jQuery);
 
-  
+  })(window.jQuery);
