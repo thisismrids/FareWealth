@@ -184,6 +184,14 @@ a:hover {
 }
 
 
+/*---------------------------------------
+  CUSTOM LINK
+-----------------------------------------*/
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+}
+
 
 /*---------------------------------------
   CUSTOM LINK
@@ -522,7 +530,7 @@ strong {
   right: 0;
   z-index: -1;
   transition: width .6s cubic-bezier(.25,.8,.25,1) 0s;
-  background: #198754;
+  background: #3b699d;
 }
 
 .news-image-hover-warning::after {
@@ -534,7 +542,11 @@ strong {
 }
 
 .news-image-hover-success::after {
-  background: #198754;
+  background: #3b699d;
+}
+
+.news-image-hover-ranking::after {
+  background: #c49a67;
 }
 
 .news-image-hover:hover::after {
