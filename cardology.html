@@ -139,20 +139,132 @@ https://templatemo.com/tm-567-nomad-force
                 </div>
             </section>
 
-            <section class="related-news section-padding" id="go">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h3 class="mb-5 text-center" data-aos="fade-up">Fill in the Details and Leave the Rest to Us</h3>
-                        </div>
-                        <div class="col-lg-8 col-10 mx-auto text-center">
-                            <div class="responsive-iframe-container">
-                                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScMZxlRbfB-nCc76zKMJ4FN3G0R-Ynbxyaa8nr_Au4LdHFB1A/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-                            </div>
+            <section class="contact section-padding" id="go">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-12 mx-auto">
+                <h2 class="mb-4 text-center" data-aos="fade-up">Card-ology</h2>
+                <form action="https://script.google.com/macros/s/AKfycbwoCJj9ckgwSP_VJhA8YqLgncSgfTdULQchvzQ1Kc0MMNwpbBgkqINRcAHNaVqJUZPS/exec" method="post" class="contact-form" role="form" data-aos="fade-up">
+                    <!-- Section 1: Personal Information -->
+                    <div class="step" id="step1">
+                        <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
+                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                        <br>
+                        <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
+                        <br>
+                        <label for="employment-type" class="form-label">Employment Type <sup class="text-danger">*</sup></label>
+                        <select name="employment-type" id="employment-type" class="form-control" required>
+                            <option value="Salaried">Salaried</option>
+                            <option value="Non-Salaried">Non-Salaried</option>
+                        </select>
+                        <br>
+                        <button type="button" onclick="nextStep(2)" class="arrow-btn next-btn">Next &#8594;</button>
+                    </div>
+
+                    <!-- Section 2: Credit Card Usage -->
+                    <div class="step" id="step2">
+                        <label for="credit-card-usage" class="form-label">What do you want to use your Credit Card for? <sup class="text-danger">*</sup></label>
+                        <select name="credit-card-usage" id="credit-card-usage" class="form-control" required>
+                            <option value="Nothing Specific">Nothing Specific</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Fuel">Fuel</option>
+                            <option value="Cashback/ Rewards">Cashback/ Rewards</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Food">Food</option>
+                            <option value="Health & Wellness">Health & Wellness</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Luxury">Luxury</option>
+                            <option value="Forex">Forex</option>
+                            <option value="FinTech">FinTech</option>
+                        </select>
+                        <br>
+                        <label for="joining-fee-restriction" class="form-label">Any specific restrictions on Joining Fee? <sup class="text-danger">*</sup></label>
+                        <select name="joining-fee-restriction" id="joining-fee-restriction" class="form-control" required>
+                            <option value="None">None</option>
+                            <option value="0">0</option>
+                            <option value="500">500</option>
+                            <option value="750">750</option>
+                            <option value="1000">1000</option>
+                            <option value="1500">1500</option>
+                        </select>
+                        <br>
+                        <label for="annual-salary" class="form-label">Fixed Component of your Annual Salary (in lakhs) <sup class="text-danger">*</sup></label>
+                        <input type="number" name="annual-salary" id="annual-salary" class="form-control" placeholder="Eg. 6000000" required>
+                        <br>
+                        <button type="button" onclick="prevStep(1)" class="arrow-btn">&#8592; Previous</button>
+                        <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn">Next &#8594;</button>
+                    </div>
+
+                    <!-- Section 3: Message -->
+                    <div class="step" id="step3">
+                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5 text-center">
+                      <p data-aos="fade-up" data-aos-delay="500">The following questions will help us better understand you and thus, give you more personalized recommendations.</p>
+                    </div>
+                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5 text-center">
+                      <p data-aos="fade-up" data-aos-delay="500">But still, if you don't want to answer these questions we respect your decision - Your financial journey, your rules🙌 </p>
+                    </div>
+                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5 text-center">
+                      <p data-aos="fade-up" data-aos-delay="500">Our personalized recommendations are on point, even without them! 😉 </p>
+                    </div>
+
+                    <button type="button" onclick="prevStep(2)" class="arrow-btn">&#8592; Previous</button>
+                    <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn">Next &#8594;</button>
+                    </div>
+
+                    <!-- Section 4: Credit Score and Late Payment History -->
+                    <div class="step" id="step4">
+                        <label for="credit-score" class="form-label">Credit Score (optional)</label>
+                        <input type="text" name="credit-score" id="credit-score" class="form-control" placeholder="Your credit score">
+                        <br>
+                        <label for="late-payment-history" class="form-label">How many times have you been charged a late payment fee for a bill (any kind of bill)?</label>
+                        <select name="late-payment-history" id="late-payment-history" class="form-control">
+                            <option value="Never">Never</option>
+                            <option value="Only once">Only once</option>
+                            <option value="More than twice">More than twice</option>
+                            <option value="4 times and strong xD">4 times and strong xD</option>
+                            <option value="Lost the count xP">Lost the count xP</option>
+                        </select>
+                        <br>
+                        <label for="average-spends" class="form-label">What are your average spends in a month? (in Rupees)</label>
+                        <select name="average-spends" id="average-spends" class="form-control">
+                            <option value="<1000">< ₹1000</option>
+                            <option value="<2500">< ₹2500</option>
+                            <option value="<5000">< ₹5000</option>
+                            <option value="<5000">> ₹5000</option>
+                        </select>
+                        <br>
+                        <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
+                        <button type="button" onclick="nextStep(5)" class="arrow-btn next-btn">Next &#8594;</button>
+                    </div>
+
+                    <!-- Section 5: Current Credit Cards and Credit History -->
+                    <div class="step" id="step5">
+                        <label for="current-credit-cards" class="form-label">Do you have any credit card right now?</label>
+                        <select name="current-credit-cards" id="current-credit-cards" class="form-control">
+                            <option value="Yes, I have 1">Yes, I have 1</option>
+                            <option value="Yes, I have more than 1">Yes, I have more than 1</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
+                        <label for="credit-history" class="form-label">Have you ever taken credit (other than credit card)?</label>
+                        <select name="credit-history" id="credit-history" class="form-control">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <br>
+                        <button type="button" onclick="prevStep(4)" class="arrow-btn">&#8592; Previous</button>
+                        <br>
+                        <div class="col-lg-5 col-12 mx-auto mt-5">
+                            <button type="submit" class="form-control">Submit</button>
                         </div>
                     </div>
-                </div>
-            </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 
         </main>
@@ -209,6 +321,27 @@ https://templatemo.com/tm-567-nomad-force
         <script src="js/magnific-popup-options.js"></script>
         <script src="js/scrollspy.min.js"></script>
         <script src="js/custom.js"></script>
+        <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+          document.getElementById(`step${currentStep}`).style.display = "none";
+          currentStep = step;
+          document.getElementById(`step${currentStep}`).style.display = "block";
+        }
+
+        function prevStep(step) {
+          document.getElementById(`step${currentStep}`).style.display = "none";
+          currentStep = step;
+          document.getElementById(`step${currentStep}`).style.display = "block";
+        }
+
+        // Initially, only show the first step
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "none";
+        document.getElementById("step4").style.display = "none";
+        document.getElementById("step5").style.display = "none";
+        </script>
 
     </body>
 </html>
