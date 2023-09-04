@@ -139,33 +139,35 @@ https://templatemo.com/tm-567-nomad-force
                 </div>
             </section>
 
-            <section class="contact section-padding" id="go">
+  <section class="contact section-padding" id="go">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-12 mx-auto">
-                <h2 class="mb-4 text-center" data-aos="fade-up">Fill in the Details and Leave the Rest to Us</h2>
+                <h2 class="mb-4 text-center" data-aos="fade-up">Card-ology</h2>
                 <form action="https://script.google.com/macros/s/AKfycbwoCJj9ckgwSP_VJhA8YqLgncSgfTdULQchvzQ1Kc0MMNwpbBgkqINRcAHNaVqJUZPS/exec" method="post" class="contact-form" role="form" data-aos="fade-up">
                     <!-- Section 1: Personal Information -->
                     <div class="step" id="step1">
                         <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
-                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required>
                         <br>
                         <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
                         <br>
                         <label for="employment-type" class="form-label">Employment Type <sup class="text-danger">*</sup></label>
                         <select name="employment-type" id="employment-type" class="form-control" required>
-                            <option value="Salaried">Salaried</option>
-                            <option value="Non-Salaried">Non-Salaried</option>
+                          <option value="" disabled selected>Select</option>
+                          <option value="Salaried">Salaried</option>
+                          <option value="Non-Salaried">Non-Salaried</option>
                         </select>
                         <br>
-                        <button type="button" onclick="nextStep(2)" class="arrow-btn next-btn">Next &#8594;</button>
+                        <button type="button" onclick="nextStep(2)" class="arrow-btn next-btn" id="next-button-section1">Next &#8594;</button>
                     </div>
 
                     <!-- Section 2: Credit Card Usage -->
                     <div class="step" id="step2">
                         <label for="credit-card-usage" class="form-label">What do you want to use your Credit Card for? <sup class="text-danger">*</sup></label>
                         <select name="credit-card-usage" id="credit-card-usage" class="form-control" required>
+                            <option value="" disabled selected>Select</option>
                             <option value="Nothing Specific">Nothing Specific</option>
                             <option value="Lifestyle">Lifestyle</option>
                             <option value="E-commerce">E-commerce</option>
@@ -182,6 +184,7 @@ https://templatemo.com/tm-567-nomad-force
                         <br>
                         <label for="joining-fee-restriction" class="form-label">Any specific restrictions on Joining Fee? <sup class="text-danger">*</sup></label>
                         <select name="joining-fee-restriction" id="joining-fee-restriction" class="form-control" required>
+                            <option value="" disabled selected>Select</option>
                             <option value="None">None</option>
                             <option value="0">0</option>
                             <option value="500">500</option>
@@ -194,7 +197,7 @@ https://templatemo.com/tm-567-nomad-force
                         <input type="number" name="annual-salary" id="annual-salary" class="form-control" placeholder="Eg. 6000000" required>
                         <br>
                         <button type="button" onclick="prevStep(1)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn">Next &#8594;</button>
+                        <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn" id="next-button-section2">Next &#8594;</button>
                     </div>
 
                     <!-- Section 3: Message -->
@@ -210,7 +213,7 @@ https://templatemo.com/tm-567-nomad-force
                     </div>
 
                     <button type="button" onclick="prevStep(2)" class="arrow-btn">&#8592; Previous</button>
-                    <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn">Next &#8594;</button>
+                    <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn"id="next-button-section3">Next &#8594;</button>
                     </div>
 
                     <!-- Section 4: Credit Score and Late Payment History -->
@@ -220,6 +223,7 @@ https://templatemo.com/tm-567-nomad-force
                         <br>
                         <label for="late-payment-history" class="form-label">How many times have you been charged a late payment fee for a bill (any kind of bill)?</label>
                         <select name="late-payment-history" id="late-payment-history" class="form-control">
+                            <option value="" disabled selected>Select</option>
                             <option value="Never">Never</option>
                             <option value="Only once">Only once</option>
                             <option value="More than twice">More than twice</option>
@@ -229,6 +233,7 @@ https://templatemo.com/tm-567-nomad-force
                         <br>
                         <label for="average-spends" class="form-label">What are your average spends in a month? (in Rupees)</label>
                         <select name="average-spends" id="average-spends" class="form-control">
+                            <option value="" disabled selected>Select</option>
                             <option value="<1000">< ₹1000</option>
                             <option value="<2500">< ₹2500</option>
                             <option value="<5000">< ₹5000</option>
@@ -236,13 +241,14 @@ https://templatemo.com/tm-567-nomad-force
                         </select>
                         <br>
                         <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(5)" class="arrow-btn next-btn">Next &#8594;</button>
+                        <button type="button" onclick="nextStep(5)" class="arrow-btn next-btn"id="next-button-section4">Next &#8594;</button>
                     </div>
 
                     <!-- Section 5: Current Credit Cards and Credit History -->
                     <div class="step" id="step5">
                         <label for="current-credit-cards" class="form-label">Do you have any credit card right now?</label>
                         <select name="current-credit-cards" id="current-credit-cards" class="form-control">
+                            <option value="" disabled selected>Select</option>
                             <option value="Yes, I have 1">Yes, I have 1</option>
                             <option value="Yes, I have more than 1">Yes, I have more than 1</option>
                             <option value="No">No</option>
@@ -250,6 +256,7 @@ https://templatemo.com/tm-567-nomad-force
                         <br>
                         <label for="credit-history" class="form-label">Have you ever taken credit (other than credit card)?</label>
                         <select name="credit-history" id="credit-history" class="form-control">
+                            <option value="" disabled selected>Select</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -257,7 +264,8 @@ https://templatemo.com/tm-567-nomad-force
                         <button type="button" onclick="prevStep(4)" class="arrow-btn">&#8592; Previous</button>
                         <br>
                         <div class="col-lg-5 col-12 mx-auto mt-5">
-                            <button type="submit" class="form-control">Submit</button>
+                            <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
+                            <div id="caution-message" class="text-danger text-center"></div>
                         </div>
                     </div>
                 </form>
@@ -342,6 +350,29 @@ https://templatemo.com/tm-567-nomad-force
         document.getElementById("step4").style.display = "none";
         document.getElementById("step5").style.display = "none";
         </script>
+        <script>
+    // Function to validate the form before submission
+    function validateForm() {
+        // Check if any of the required fields are not filled
+        var requiredFields = document.querySelectorAll('[required]');
+        var isFormValid = true;
+
+        for (var i = 0; i < requiredFields.length; i++) {
+            if (!requiredFields[i].value.trim()) {
+                isFormValid = false;
+                break;
+            }
+        }
+
+        if (isFormValid) {
+            // If all required fields are filled, submit the form
+            document.querySelector('form').submit();
+        } else {
+            // Display the caution message
+            document.getElementById('caution-message').textContent = 'There is a required question not answered';
+        }
+    }
+</script>
 
     </body>
 </html>
