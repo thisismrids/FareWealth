@@ -192,6 +192,31 @@ a:hover {
     height: auto;
 }
 
+/*---------------------------------------
+  Form arrow
+-----------------------------------------*/
+.arrow-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .next-btn {
+            float: right; /* Align the button to the right */
+        }
+
+.dropdown-arrow {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    /* Style for the select elements to add some padding for the arrow icon */
+    select {
+        padding-right: 30px; /* Adjust as needed */
+    }
 
 /*---------------------------------------
   CUSTOM LINK
