@@ -143,10 +143,10 @@ https://templatemo.com/tm-567-nomad-force
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-12 mx-auto">
-                <h2 class="mb-4 text-center" data-aos="fade-up">Fill-in the details and see the magic!</h2>
                 <form action="https://script.google.com/macros/s/AKfycbwoCJj9ckgwSP_VJhA8YqLgncSgfTdULQchvzQ1Kc0MMNwpbBgkqINRcAHNaVqJUZPS/exec" method="post" class="contact-form" role="form" data-aos="fade-up">
                     <!-- Section 1: Personal Information -->
                     <div class="step" id="step1">
+                        <h2 class="mb-4 text-center" data-aos="fade-up">Getting to Know You!</h2>
                         <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
                         <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required>
                         <br>
@@ -165,6 +165,7 @@ https://templatemo.com/tm-567-nomad-force
 
                     <!-- Section 2: Credit Card Usage -->
                     <div class="step" id="step2">
+                        <h2 class="mb-4 text-center" data-aos="fade-up">Getting to Know You More</h2>
                         <label for="credit-card-usage" class="form-label">What do you want to use your Credit Card for? <sup class="text-danger">*</sup></label>
                         <select name="credit-card-usage" id="credit-card-usage" class="form-control" required>
                             <option value="" disabled selected>Select</option>
@@ -200,24 +201,9 @@ https://templatemo.com/tm-567-nomad-force
                         <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn" id="next-button-section2">Next &#8594;</button>
                     </div>
 
-                    <!-- Section 3: Message -->
-                    <div class="step" id="step3">
-                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5">
-                      <p data-aos="fade-up" data-aos-delay="500">The following questions will help us better understand you and thus, give you more personalized recommendations.</p>
-                    </div>
-                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5">
-                      <p data-aos="fade-up" data-aos-delay="500">But still, if you don't want to answer these questions we respect your decision - Your financial journey, your rules🙌 </p>
-                    </div>
-                    <div class="col-lg-12 col-12 mt-lg-1 mb-lg-5">
-                      <p data-aos="fade-up" data-aos-delay="500">Our personalized recommendations are on point, even without them! 😉 </p>
-                    </div>
-
-                    <button type="button" onclick="prevStep(2)" class="arrow-btn">&#8592; Previous</button>
-                    <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn"id="next-button-section3">Next &#8594;</button>
-                    </div>
-
                     <!-- Section 4: Credit Score and Late Payment History -->
-                    <div class="step" id="step4">
+                    <div class="step" id="step3">
+                        <h2 class="mb-4 text-center" data-aos="fade-up">Your Credit Handling (Optional)</h2>
                         <label for="credit-score" class="form-label">Credit Score (its optional but you can check your credit score <u><i><a href="https://creditreport.paisabazaar.com/credit-report/apply?utm_source=google_brand&utm_medium=ppc0paisabazaar&utm_term=paisabazaar%20cibil&utm_campaign=Paisabazaar_CS_Desktop00Cibil_Exact_Desktop&Campaign=771973089&Adgroupid=40110799906&Loc_Inte=&Loc_Phys=9061695&Matchtype=e&Network=g&Device=c&Devicemodel=&Gclid=CjwKCAjwivemBhBhEiwAJxNWN50Nm9okqbE24XlFQ9FS-tomcrTzX8kj9dLvlo1PJSS6yJveeFjtgRoCtAMQAvD_BwE&Keyword=paisabazaar%20cibil&Placement=&Adpos=&gclid=CjwKCAjwivemBhBhEiwAJxNWN50Nm9okqbE24XlFQ9FS-tomcrTzX8kj9dLvlo1PJSS6yJveeFjtgRoCtAMQAvD_BwE">here</a></i></u>)</label>
                         <input type="text" name="credit-score" id="credit-score" class="form-control" placeholder="Your credit score">
                         <br>
@@ -240,12 +226,13 @@ https://templatemo.com/tm-567-nomad-force
                             <option value="<5000">> ₹5000</option>
                         </select>
                         <br>
-                        <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(5)" class="arrow-btn next-btn"id="next-button-section4">Next &#8594;</button>
+                        <button type="button" onclick="prevStep(2)" class="arrow-btn">&#8592; Previous</button>
+                        <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn"id="next-button-section4">Next &#8594;</button>
                     </div>
 
                     <!-- Section 5: Current Credit Cards and Credit History -->
-                    <div class="step" id="step5">
+                    <div class="step" id="step4">
+                        <h2 class="mb-4 text-center" data-aos="fade-up">Your Credit History (Optional)</h2>
                         <label for="current-credit-cards" class="form-label">Do you have any credit card right now?</label>
                         <select name="current-credit-cards" id="current-credit-cards" class="form-control">
                             <option value="" disabled selected>Select</option>
@@ -261,7 +248,7 @@ https://templatemo.com/tm-567-nomad-force
                             <option value="No">No</option>
                         </select>
                         <br>
-                        <button type="button" onclick="prevStep(4)" class="arrow-btn">&#8592; Previous</button>
+                        <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
                         <br>
                         <div class="col-lg-5 col-12 mx-auto mt-5">
                             <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
@@ -348,7 +335,6 @@ https://templatemo.com/tm-567-nomad-force
         document.getElementById("step2").style.display = "none";
         document.getElementById("step3").style.display = "none";
         document.getElementById("step4").style.display = "none";
-        document.getElementById("step5").style.display = "none";
         </script>
         <script>
     // Function to validate the form before submission
