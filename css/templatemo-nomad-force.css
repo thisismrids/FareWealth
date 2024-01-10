@@ -634,14 +634,14 @@ strong {
     }
 
 /*---------------------------------------
-  CONTACT
+  Button1
 -----------------------------------------*/
 
-.button-container {
+.button1-container {
   text-align: center; /* Center-align content */
 }
 
-.small-button {
+.small-button1 {
   background: var(--dark-color);
   border: none;
   border-radius: 100px;
