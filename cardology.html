@@ -107,7 +107,7 @@ https://templatemo.com/tm-567-nomad-force
                             <div class="clearfix my-4 mt-lg-0 mt-5">
                                 <div class="col-md-6 float-md-end mb-3 ms-md-3" data-aos="fade-up">
                                     <figure class="figure">
-                                        <img src="images/news/original.gif" class="img-fluid news-image" alt="">
+                                        <img src="videos/cardology.gif" class="img-fluid news-image" alt="">
 
                                         <!--<figcaption class="figure-caption text-end">A caption for the above image.</figcaption>-->
                                     </figure>
@@ -121,7 +121,7 @@ https://templatemo.com/tm-567-nomad-force
                                   </p>
 
                                 <div class="col-lg-5 col-12 mx-auto text-center mt-5">
-                                  <a href="#go" class="small-button">Get Started</a>
+                                  <a href="#go" class="small-button1">Get Started</a>
                                 </div>
 
 
@@ -428,26 +428,27 @@ https://templatemo.com/tm-567-nomad-force
         </script>
         <script>
     // Function to validate the form before submission
-    function validateForm() {
-        // Check if any of the required fields are not filled
-        var requiredFields = document.querySelectorAll('[required]');
-        var isFormValid = true;
+    function validateForm(go) {
+    // Check if any of the required fields in the specified form are not filled
+    var form = document.getElementById(go);
+    var requiredFields = form.querySelectorAll('[required]');
+    var isFormValid = true;
 
-        for (var i = 0; i < requiredFields.length; i++) {
-            if (!requiredFields[i].value.trim()) {
-                isFormValid = false;
-                break;
-            }
-        }
-
-        if (isFormValid) {
-            // If all required fields are filled, submit the form
-            document.querySelector('form').submit();
-        } else {
-            // Display the caution message
-            document.getElementById('caution-message').textContent = '1 or more compulsory question unanswered!';
+    for (var i = 0; i < requiredFields.length; i++) {
+        if (!requiredFields[i].value.trim()) {
+            isFormValid = false;
+            break;
         }
     }
+
+    if (isFormValid) {
+        // If all required fields are filled, submit the form
+        form.submit();
+    } else {
+        // Display the caution message for the specified form
+        document.getElementById(go + '-caution-message').textContent = 'One or more compulsory questions unanswered!';
+    }
+}
 </script>
 
     </body>
