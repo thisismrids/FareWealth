@@ -636,6 +636,25 @@ strong {
 /*---------------------------------------
   CONTACT
 -----------------------------------------*/
+
+.button-container {
+  text-align: center; /* Center-align content */
+}
+
+.small-button {
+  background: var(--dark-color);
+  border: none;
+  border-radius: 100px;
+  color: var(--white-color);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  padding: 16px;
+  transition: all 0.6s ease-out;
+}
+
+/*---------------------------------------
+  CONTACT
+-----------------------------------------*/
 .contact-info {
   padding: 40px;
 }
