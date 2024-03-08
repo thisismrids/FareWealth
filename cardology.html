@@ -165,7 +165,6 @@ https://templatemo.com/tm-567-nomad-force
                 </div>
             </section>
 
-<form>
   <section class="news section-padding" id="go">
     <div class="container">
         <div class="row">
@@ -294,7 +293,6 @@ https://templatemo.com/tm-567-nomad-force
         </div>
     </div>
 </section>
-</form>
 
 <section class=" contact section-padding" id="contact">
     <div class="container">
@@ -471,24 +469,25 @@ https://templatemo.com/tm-567-nomad-force
           }
         }
         </script>
-<script>
+        <script>
+            const form = document.querySelector('form');
 
-const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
 
-form.addEventListener('submit', (e) => {
+                // Get reCAPTCHA response
+                const captchaResponse = document.getElementById('g-recaptcha-response').value;
 
-e.preventdefault();
+                // Check if reCAPTCHA response is empty
+                if (!captchaResponse || captchaResponse.length === 0) {
+                    alert("Please complete the reCAPTCHA.");
+                    return; // Exit function early if reCAPTCHA is not completed
+                }
 
-const captcharesponse = grecaptcha.getresponse();
-
-if (!captcharesponse.length > 0) {
-  throw new Error("Captcha Not Completed")
-}
-
-});
-
-
-</script>
+                // If reCAPTCHA is completed, submit the form
+                form.submit();
+            });
+        </script>
 
     </body>
 </html>
