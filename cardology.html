@@ -283,7 +283,7 @@ https://templatemo.com/tm-567-nomad-force
                           <div class="g-recaptcha" data-sitekey="6LdAO5IpAAAAAK15Z3BLJcBoKoiZpqKz-oMtKW0u"></div>
                         </div>
                         <div class="col-lg-5 col-12 mx-auto mt-5">
-                          <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
+                          <button type="submit" onclick="validateForm('yourFormId')" class="form-control">Submit</button>
                           <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                             <div id="caution-message" class="text-danger text-center"></div>
                         </div>
@@ -468,48 +468,39 @@ https://templatemo.com/tm-567-nomad-force
             "email": "cardology@farewealth.co"
           }
         }
-        </script>
 
         <script>
-        function validateForm() {
-            var response = grecaptcha.getResponse();
-            if (response.length === 0) {
-                // reCAPTCHA not verified
-                document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
-                return false;
-            } else {
-                // reCAPTCHA verified, proceed with form submission
-                document.getElementById('caution-message').innerHTML = ''; // Clear any previous error message
-                document.getElementById('g-recaptcha-response').value = response; // Add the CAPTCHA response to the form data
-                document.querySelector('.contact-form').submit(); // Submit the form
+            // Function to validate the form before submission
+            function validateForm(go) {
+                // Check if any of the required fields in the specified form are not filled
+                var form = document.getElementById(go);
+                var requiredFields = form.querySelectorAll('[required]');
+                var isFormValid = true;
+
+                for (var i = 0; i < requiredFields.length; i++) {
+                    if (!requiredFields[i].value.trim()) {
+                        isFormValid = false;
+                        break;
+                    }
+                }
+
+                // Validate reCAPTCHA
+                var response = grecaptcha.getResponse();
+                if (response.length === 0) {
+                    // reCAPTCHA not verified
+                    document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
+                    return false;
+                }
+
+                if (isFormValid) {
+                    // If all required fields are filled and reCAPTCHA is verified, submit the form
+                    form.submit();
+                } else {
+                    // Display the caution message for the specified form
+                    document.getElementById(go + '-caution-message').textContent = 'One or more compulsory questions unanswered!';
+                }
             }
-        }
         </script>
-
-        <script>
-    // Function to validate the form before submission
-    function validateForm(go) {
-    // Check if any of the required fields in the specified form are not filled
-    var form = document.getElementById(go);
-    var requiredFields = form.querySelectorAll('[required]');
-    var isFormValid = true;
-
-    for (var i = 0; i < requiredFields.length; i++) {
-        if (!requiredFields[i].value.trim()) {
-            isFormValid = false;
-            break;
-        }
-    }
-
-    if (isFormValid) {
-        // If all required fields are filled, submit the form
-        form.submit();
-    } else {
-        // Display the caution message for the specified form
-        document.getElementById(go + '-caution-message').textContent = 'One or more compulsory questions unanswered!';
-    }
-}
-</script>
 
     </body>
 </html>
