@@ -471,19 +471,20 @@ https://templatemo.com/tm-567-nomad-force
         </script>
 
         <script>
-function validateForm(go) {
-    var response = grecaptcha.getResponse(go);
-    if (response.length === 0) {
-        // reCAPTCHA not verified
-        document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
-        return false;
-    } else {
-        // reCAPTCHA verified, proceed with form submission
-        document.getElementById('caution-message').innerHTML = ''; // Clear any previous error message
-        return true;
-    }
-}
-</script>
+        function validateForm() {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                // reCAPTCHA not verified
+                document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
+                return false;
+            } else {
+                // reCAPTCHA verified, proceed with form submission
+                document.getElementById('caution-message').innerHTML = ''; // Clear any previous error message
+                document.getElementById('g-recaptcha-response').value = response; // Add the CAPTCHA response to the form data
+                document.querySelector('.contact-form').submit(); // Submit the form
+            }
+        }
+        </script>
 
         <script>
     // Function to validate the form before submission
