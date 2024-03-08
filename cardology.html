@@ -469,11 +469,11 @@ https://templatemo.com/tm-567-nomad-force
           }
         }
 
- <script>
+<script>
     // Function to validate the form before submission
-    function validateForm(go) {
+    function validateForm() {
         // Check if any of the required fields in the specified form are not filled
-        var form = document.getElementById(go);
+        var form = document.getElementById('go');
         var requiredFields = form.querySelectorAll('[required]');
         var isFormValid = true;
 
@@ -499,9 +499,10 @@ https://templatemo.com/tm-567-nomad-force
             form.submit();
         } else {
             // Display the caution message for the specified form
-            document.getElementById(go + '-caution-message').textContent = 'One or more compulsory questions unanswered!';
+            document.getElementById('caution-message').textContent = 'One or more compulsory questions unanswered!';
         }
     }
 </script>
-    </body>
+                                
+</body>
 </html>
