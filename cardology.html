@@ -44,6 +44,7 @@ https://templatemo.com/tm-567-nomad-force
 
   gtag('config', 'AW-16481809803');
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     </head>
 
@@ -278,8 +279,10 @@ https://templatemo.com/tm-567-nomad-force
                         <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
                         <br>
                         <div class="page-number text-center">4/4</div>
+                        <div class="g-recaptcha" data-sitekey="6LdfDZIpAAAAAL_pX1cqkrYFZINHQJNEYd3kd4VC"></div>
                         <div class="col-lg-5 col-12 mx-auto mt-5">
-                            <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
+                          <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
+                          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                             <div id="caution-message" class="text-danger text-center"></div>
                         </div>
                     </div>
@@ -465,6 +468,20 @@ https://templatemo.com/tm-567-nomad-force
         }
         </script>
 
+        <script>
+function validateForm(go) {
+    var response = grecaptcha.getResponse(go);
+    if (response.length === 0) {
+        // reCAPTCHA not verified
+        document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
+        return false;
+    } else {
+        // reCAPTCHA verified, proceed with form submission
+        document.getElementById('caution-message').innerHTML = ''; // Clear any previous error message
+        return true;
+    }
+}
+</script>
 
         <script>
     // Function to validate the form before submission
