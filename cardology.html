@@ -489,7 +489,7 @@ https://templatemo.com/tm-567-nomad-force
         if (response.length === 0) {
             // reCAPTCHA not verified
             document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
-            return false;
+            var isFormValid = false;
         }
 
         if (isFormValid) {
