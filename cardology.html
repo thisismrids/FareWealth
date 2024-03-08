@@ -44,6 +44,7 @@ https://templatemo.com/tm-567-nomad-force
 
   gtag('config', 'AW-16481809803');
 </script>
+
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     </head>
@@ -283,8 +284,8 @@ https://templatemo.com/tm-567-nomad-force
                           <div class="g-recaptcha" data-sitekey="6LdAO5IpAAAAAK15Z3BLJcBoKoiZpqKz-oMtKW0u"></div>
                         </div>
                         <div class="col-lg-5 col-12 mx-auto mt-5">
-                          <button type="submit" onclick="validateFormWithRecaptcha()" class="form-control">Submit</button>
-                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                            <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
+                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" required>
                             <div id="caution-message" class="text-danger text-center"></div>
                         </div>
                     </div>
@@ -468,23 +469,8 @@ https://templatemo.com/tm-567-nomad-force
             "email": "cardology@farewealth.co"
           }
         }
+        </script>
 
-<script>
-    // Function to validate the form before submission
-    function validateFormWithRecaptcha() {
-        var response = grecaptcha.getResponse();
-        if (response.length === 0) {
-            // reCAPTCHA not verified
-            document.getElementById('caution-message').innerHTML = 'Please complete the reCAPTCHA.';
-            return false;
-        } else {
-            // reCAPTCHA verified, proceed with form submission
-            document.getElementById('caution-message').innerHTML = ''; // Clear any previous error message
-            document.getElementById('g-recaptcha-response').value = response; // Add the CAPTCHA response to the form data
-            document.querySelector('.contact-form').submit(); // Submit the form
-        }
-    }
-</script>
-                                
-</body>
+
+    </body>
 </html>
