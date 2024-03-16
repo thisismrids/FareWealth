@@ -221,9 +221,21 @@ https://templatemo.com/tm-567-nomad-force
                             <option value="1500">1500</option>
                         </select>
                         <br>
-                        <label for="annual-salary" class="form-label">Fixed Component of your Annual Salary (in lakhs) <sup class="text-danger">*</sup></label>
-                        <input type="number" name="annual-salary" id="annual-salary" class="form-control" placeholder="Eg. 6000000" required>
+                        <label for="annual-salary" class="form-label">Where does the Fixed Component of your Salary fall? <sup class="text-danger">*</sup></label>
+                        <select name="annual-salary" id="annual-salary" class="form-control" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="650000">Less than 6.5 Lakhs</option>
+                            <option value="1200000">7 to 12 Lakhs</option>
+                            <option value="1800000">13 to 18 Lakhs</option>
+                            <option value="2400000">19 to 24 Lakhs</option>
+                            <option value="3000000">25 to 30 Lakhs</option>
+                            <option value="4000000">31 to 40 Lakhs</option>
+                            <option value="10000000">> 40 Lakhs</option>
+                        </select>
                         <br>
+                        <!--<label for="annual-salary" class="form-label">Fixed Component of your Annual Salary (in lakhs) <sup class="text-danger">*</sup></label>
+                        <input type="number" name="annual-salary" id="annual-salary" class="form-control" placeholder="Eg. 6000000" required>
+                        <br>-->
                         <button type="button" onclick="prevStep(1)" class="arrow-btn">&#8592; Previous</button>
                         <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn" id="next-button-section2">Next &#8594;</button>
                         <div class="page-number text-center">2/4</div>
