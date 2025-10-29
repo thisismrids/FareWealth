@@ -293,8 +293,8 @@ https://templatemo.com/tm-567-nomad-force
                         <br>
                         <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
                         <br>
-                        <div class="page-number text-center">4/4</div>
-                        <!--<div class="col-lg-5 col-12 mx-auto mt-5">
+                        <!--<div class="page-number text-center">4/4</div>
+                        <div class="col-lg-5 col-12 mx-auto mt-5">
                           <div class="g-recaptcha" data-sitekey="6LdAO5IpAAAAAK15Z3BLJcBoKoiZpqKz-oMtKW0u"></div>
                         </div>-->
                         <div class="col-lg-5 col-12 mx-auto mt-5">
@@ -488,21 +488,10 @@ https://templatemo.com/tm-567-nomad-force
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault(); // Prevent default form submission
-
-                // Get reCAPTCHA response
-                const captchaResponse = document.getElementById('g-recaptcha-response').value;
-
-                // Check if reCAPTCHA response is empty
-                if (!captchaResponse || captchaResponse.length === 0) {
-                    alert("Please complete the reCAPTCHA.");
-                    return; // Exit function early if reCAPTCHA is not completed
-                }
-
-                // If reCAPTCHA is completed, submit the form
-                form.submit();
             });
         </script>
 
     </body>
 </html>
+
 
