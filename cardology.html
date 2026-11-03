@@ -1,492 +1,215 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="description" content="India's 1st Credit Card Recommendation System. Find the best credit cards from SBI, Axis Bank, ICICI, HDFC, and more.">
-        <meta name="keywords" content="reward points, redemption, cashback, miles, credit cards, best credit card, which credit card to get, credit card recommendation, SBI, Axis Bank, ICICI, HDFC, IDFC, credit score, CIBIL, CRIF, Gpay, Cred, Magnus, Amex, American Express, infinia">
-        <meta name="author" content="FareWealth">
-
-        <title>Cardology - FareWealth | Credit Card Recommendation System</title>
-        <link href="images/tabicon.png" rel="icon">
-
-        <!-- CSS FILES -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
-
-        <link rel="stylesheet" href="css/magnific-popup.css">
-
-        <link href="css/aos.css" rel="stylesheet">
-
-        <link href="css/templatemo-nomad-force.css" rel="stylesheet">
-<!--
-
-TemplateMo 567 Nomad Force
-
-https://templatemo.com/tm-567-nomad-force
-
--->
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16481809803">
-</script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardology by FareWealth</title>
+<meta name="description" content="Find the credit cards that give you the most on your spends. A one-minute chat, built on real card data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f5f7; --surface: #ffffff; --ink: #222831; --muted: #6b7079; --line: #e3e5e9;
+  --brand: #37414f; --brand-ink: #ffffff; --accent: #b8913f; --chip: #eef0f3; --chip-on: #37414f;
+  --user: #37414f; --user-ink: #ffffff; --shadow: 0 1px 2px rgba(20, 24, 31, .06), 0 4px 16px rgba(20, 24, 31, .05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15181d; --surface: #1d2128; --ink: #eceef1; --muted: #9aa0a9; --line: #2c313a;
+    --brand: #c9ced6; --brand-ink: #15181d; --accent: #d8b46a; --chip: #262b33; --chip-on: #c9ced6;
+    --user: #3b4555; --user-ink: #ffffff; --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15181d; --surface: #1d2128; --ink: #eceef1; --muted: #9aa0a9; --line: #2c313a;
+  --brand: #c9ced6; --brand-ink: #15181d; --accent: #d8b46a; --chip: #262b33; --chip-on: #c9ced6;
+  --user: #3b4555; --user-ink: #ffffff; --shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15.5px/1.55 "Noto Sans JP", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased; }
+.app { display: flex; flex-direction: column; height: 100dvh; max-width: 760px; margin: 0 auto; }
+header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line);
+  background: var(--bg); position: sticky; top: 0; z-index: 2; }
+header img { width: 38px; height: 38px; }
+header h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .2px; }
+header p { margin: 0; font-size: 12.5px; color: var(--muted); }
+header a.tg { margin-left: auto; font-size: 12.5px; color: var(--muted); text-decoration: none; border: 1px solid var(--line);
+  padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+header a.tg:hover { color: var(--ink); }
+#log { flex: 1; overflow-y: auto; padding: 18px 16px 8px; scroll-behavior: smooth; }
+.row { display: flex; margin: 0 0 10px; }
+.row.user { justify-content: flex-end; }
+.bubble { max-width: 86%; padding: 11px 14px; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow);
+  white-space: pre-line; overflow-wrap: anywhere; border-top-left-radius: 6px; }
+.row.user .bubble { background: var(--user); color: var(--user-ink); border-radius: 16px; border-top-right-radius: 6px;
+  box-shadow: none; }
+.bubble b { font-weight: 700; }
+.bubble i { color: var(--muted); }
+.row.user .bubble i { color: inherit; }
+.bubble a { color: var(--accent); }
+.card { max-width: 92%; background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+  border-top-left-radius: 6px; }
+.card img { display: block; width: 100%; max-width: 420px; margin: 6px auto 0; padding: 0 6px; }
+.card .cap { padding: 8px 16px 6px; white-space: pre-line; }
+.card .cap i { color: var(--muted); }
+.card .apply { display: block; margin: 4px 14px 14px; text-align: center; padding: 10px; border-radius: 12px;
+  background: var(--brand); color: var(--brand-ink); text-decoration: none; font-weight: 700; font-size: 14.5px; }
+.card .apply:hover { filter: brightness(1.08); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 14px; }
+.chip { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: background .15s, border-color .15s; }
+.chip:hover { border-color: var(--brand); }
+.chip.on { background: var(--chip-on); color: var(--brand-ink); border-color: var(--chip-on); }
+.chip.primary { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); font-weight: 700; }
+.chip.ghost { background: transparent; color: var(--muted); }
+.chip[disabled] { opacity: .45; cursor: default; }
+.typing { display: inline-flex; gap: 4px; align-items: center; padding: 14px 16px; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: .2s; } .typing span:nth-child(3) { animation-delay: .4s; }
+.typing em { margin-left: 8px; font-style: normal; font-size: 13px; color: var(--muted); }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+form { display: flex; gap: 8px; padding: 10px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line);
+  background: var(--bg); }
+form[hidden] { display: none; }
+form input { flex: 1; min-width: 0; font: inherit; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); outline: none; }
+form input:focus { border-color: var(--brand); }
+form button { font: inherit; font-weight: 700; border: 0; border-radius: 12px; padding: 0 16px; background: var(--brand);
+  color: var(--brand-ink); cursor: pointer; }
+footer { text-align: center; font-size: 11.5px; color: var(--muted); padding: 0 16px 10px; }
+@media (max-width: 520px) { body { font-size: 15px; } .bubble, .card { max-width: 96%; } header a.tg span { display: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <img id="logo" alt="FareWealth">
+    <div><h1>Cardology</h1><p>Find the cards that pay you the most</p></div>
+    <a class="tg" href="https://t.me/cardology_bot" target="_blank" rel="noopener">✈︎ <span>Also on </span>Telegram</a>
+  </header>
+  <main id="log" aria-live="polite"></main>
+  <form id="bar" hidden autocomplete="off">
+    <input id="inp" type="text" placeholder="Type here…" maxlength="500" aria-label="Message">
+    <button type="submit" aria-label="Send">Send</button>
+  </form>
+  <footer>Cardology by FareWealth · independent, not affiliated with any bank</footer>
+</div>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+const host = location.hostname;
+const API = (host.endsWith("farewealth.in") && host !== "api.farewealth.in") ? "https://api.farewealth.in" : "";
+const log = document.getElementById("log"), bar = document.getElementById("bar"), inp = document.getElementById("inp");
+document.getElementById("logo").src = API + "/assets/farewealth_logo.png";
+let sid = null, state = { prompt: null, input: { mode: "none" } }, busy = false;
+try { sid = localStorage.getItem("cardology_sid"); } catch (e) {}
 
-  gtag('config', 'AW-16481809803');
+function scroll() { requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; }); }
+function el(tag, cls, html) { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; }
+function clearChips() { log.querySelectorAll(".chips.live").forEach(c => c.remove()); }
+
+function addBot(html) { const r = el("div", "row"); r.appendChild(el("div", "bubble", html)); log.appendChild(r); }
+function addPlain(text) { const r = el("div", "row"); const b = el("div", "bubble"); b.textContent = text; r.appendChild(b); log.appendChild(r); }
+function addUser(text) { const r = el("div", "row user"); const b = el("div", "bubble"); b.textContent = text; r.appendChild(b); log.appendChild(r); scroll(); }
+function addCard(m) {
+  const r = el("div", "row"), c = el("div", "card");
+  const img = el("img"); img.src = API + m.image; img.alt = ""; img.loading = "lazy"; c.appendChild(img);
+  c.appendChild(el("div", "cap", m.html));
+  if (m.apply) { const a = el("a", "apply", "Apply ↗"); a.href = m.apply; a.target = "_blank"; a.rel = "noopener"; c.appendChild(a); }
+  r.appendChild(c); log.appendChild(r);
+}
+function typing(label) {
+  const r = el("div", "row typing-row"), b = el("div", "bubble typing", "<span></span><span></span><span></span>");
+  if (label) b.appendChild(el("em", null, label));
+  r.appendChild(b); log.appendChild(r); scroll(); return r;
+}
+
+async function send(body, echo, waitLabel) {
+  if (busy) return; busy = true; clearChips(); if (echo) addUser(echo);
+  bar.hidden = true;
+  const t = typing(waitLabel);
+  try {
+    const res = await fetch(API + "/api/chat", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(Object.assign({ sid }, body)) });
+    const data = await res.json();
+    t.remove();
+    if (data.error) { addPlain(data.error); busy = false; showInput(state.input); return; }
+    sid = data.sid; try { localStorage.setItem("cardology_sid", sid); } catch (e) {}
+    render(data);
+  } catch (e) {
+    t.remove(); addPlain("Couldn't reach Cardology just now. Check your connection and try again.");
+    const c = el("div", "chips live"); const b = el("button", "chip primary", "Try again");
+    b.onclick = () => { busy = false; send(body, null, waitLabel); }; c.appendChild(b); log.appendChild(c);
+  }
+  busy = false; scroll();
+}
+
+function render(d) {
+  (d.messages || []).forEach(m => m.kind === "card" ? addCard(m) : m.kind === "plain" ? addPlain(m.text) : addBot(m.html));
+  state.prompt = d.prompt; state.input = d.input || { mode: "none" };
+  if (d.prompt) renderPrompt(d.prompt);
+  if (d.actions && d.actions.length) {
+    const c = el("div", "chips live");
+    d.actions.forEach(a => {
+      if (a.url) { const l = el("a", "chip", a.label); l.href = a.url; l.target = "_blank"; l.rel = "noopener";
+        l.style.textDecoration = "none"; c.appendChild(l); return; }
+      const b = el("button", "chip" + (a.action === "book_ok" ? " primary" : ""), a.label);
+      b.onclick = () => send({ action: a.action, value: a.value }, a.label.replace(/^[^\w₹]+/u, "").trim() || a.label,
+        a.action === "book" ? "Checking the calendar…" : null);
+      c.appendChild(b);
+    });
+    log.appendChild(c);
+  }
+  showInput(state.input);
+  scroll();
+}
+
+function renderPrompt(p) {
+  addBot(p.html + (p.kind === "multi" ? "\n<i>Tap to select" + (p.max ? ` (up to ${p.max})` : "") + ", then Done.</i>" : ""));
+  const c = el("div", "chips live");
+  if (p.kind === "single") {
+    p.options.forEach((label, i) => { const b = el("button", "chip", label);
+      b.onclick = () => send({ action: "answer", qid: p.qid, index: i }, label, lastQuestion(p) ? "Crunching the numbers…" : null);
+      c.appendChild(b); });
+  } else if (p.kind === "multi") {
+    const picked = [];
+    const done = el("button", "chip primary", "Done →"); done.disabled = true;
+    p.options.forEach((label, i) => { const b = el("button", "chip", label);
+      b.onclick = () => {
+        const k = picked.indexOf(i);
+        if (k >= 0) { picked.splice(k, 1); b.classList.remove("on"); }
+        else { if (p.max && picked.length >= p.max) return; picked.push(i); b.classList.add("on"); }
+        done.disabled = !picked.length;
+      };
+      c.appendChild(b); });
+    done.onclick = () => send({ action: "answer", qid: p.qid, indices: picked }, picked.map(i => p.options[i]).join(", "));
+    c.appendChild(done);
+  } else if (p.kind === "text" && p.skip_label) {
+    const b = el("button", "chip ghost", p.skip_label + " →");
+    b.onclick = () => send({ action: "answer", qid: p.qid, skip: true }, p.skip_label, lastQuestion(p) ? "Crunching the numbers…" : null);
+    c.appendChild(b);
+  }
+  if (p.can_back) { const b = el("button", "chip ghost", "← Back"); b.onclick = () => send({ action: "back" }); c.appendChild(b); }
+  log.appendChild(c);
+}
+function lastQuestion(p) { return p.qid === "notes"; }
+
+function showInput(i) {
+  const on = i && i.mode && i.mode !== "none";
+  bar.hidden = !on;
+  if (on) { inp.type = i.mode === "email" ? "email" : "text"; inp.placeholder = i.placeholder || "Type here…";
+    if (matchMedia("(pointer: fine)").matches) inp.focus(); }
+}
+
+bar.addEventListener("submit", e => {
+  e.preventDefault(); const text = inp.value.trim(); if (!text || busy) return; inp.value = "";
+  const p = state.prompt;
+  if (p && p.kind === "text") send({ action: "answer", qid: p.qid, text }, text,
+    p.qid === "existing_cards" ? "Reading your cards…" : lastQuestion(p) ? "Crunching the numbers…" : null);
+  else send({ action: "text", text }, text, state.input.mode === "followup" ? "Thinking…" : null);
+});
+
+send({ action: "start" });
 </script>
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-    </head>
-
-    <body>
-
-        <main>
-
-          <section class="hero" id="hero">
-              <div class="heroText">
-                  <h1 class="text-white mt-5 mb-lg-4" data-aos="zoom-in" data-aos-delay="800">
-                      Cardology
-                  </h1>
-
-                  <p class="text-secondary-white-color" data-aos="fade-up" data-aos-delay="1000">
-                      <strong class="custom-underline">India's 1<sup>st</sup></strong> Credit Card Recommendation System
-                  </p>
-              </div>
-                <div style="display:none">credit card</div>
-                <div class="videoWrapper">
-                  <video autoplay="" loop="" muted="" class="custom-video" poster="videos/card_fall.mp4">
-                      <source src="videos/card_fall.mp4" type="video/mp4">
-
-                      Your browser does not support the video tag.
-                  </video>
-              </div>
-
-                <div class="overlay"></div>
-            </section>
-
-            <nav class="navbar navbar-expand-lg bg-light shadow-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="cardology">
-                        <strong>Cardology</strong>
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#hero">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#why">Why Cardology?</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#go">Get Started</a>
-                            </li>
-
-                            <!--<li class="nav-item">
-                                <a class="nav-link" href="index.html#news">News & Events</a>
-                            </li>-->
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="index">FareWealth</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-              <div style="display:none">credit score</div>
-
-            <section class="news-detail section-padding" id = "why" >
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-10 mx-auto">
-                            <h2 class="mb-3" data-aos="fade-up">Introducing Cardology: Where Personalized Recommendations Meet Financial Precision!</h2>
-                              <div style="display:none">cred</div>
-                            <p class="me-4" data-aos="fade-up">In a world full of credit card options, finding the ideal one can be overwhelming. But worry no more – <b>Cardology is here to make your credit card quest effortless!</b></p>
-                              <div style="display:none">infinia</div>
-                            <div class="clearfix my-4 mt-lg-0 mt-5">
-                                <div class="col-md-6 float-md-end mb-3 ms-md-3" data-aos="fade-up">
-                                    <figure class="figure">
-                                        <img src="videos/cardology.gif" class="img-fluid news-image" alt="Credit Card Recommendation">
-
-                                        <!--<figcaption class="figure-caption text-end">A caption for the above image.</figcaption>-->
-                                    </figure>
-                                </div>
-                                  <div style="display:none">miles</div>
-                            <p data-aos="fade-up">Gone are the days of putting in hours of research in finding a card and still being blindsided by something in the fine print. Cardology's cutting-edge algorithm takes into account not just your income, but your dreams and aspirations too</p>
-                            <p data-aos="fade-up">Whether you're a wanderer seeking air miles or a cashback enthusiast, Cardology handpicks options that align with your desires</p>
-                              <div style="display:none">reward points</div>
-                                  <p data-aos="fade-up">
-                                  Cardology is your one-stop shop, offering unbiased recommendations and a vast database to find your perfect match. So what are you waiting for? Start your journey to finding the ideal credit card today!
-                                  </p>
-                                    <div style="display:none">cashback</div>
-                                <div class="col-lg-5 col-12 mx-auto text-center mt-5">
-                                  <a href="#go" class="small-button1">Get Started</a>
-                                </div>
-                                  <div style="display:none">credit score</div>
-                                  <div style="display:none">redemptions</div>
-                                  <!--<p data-aos="fade-up">
-                                  Xx
-                                  </p>
-
-                                  <p data-aos="fade-up">
-                                    This Bootstrap 5 layout is provided by TemplateMo website and it is free to use for any of your website. You are allowed to edit it in any way you like. However, please do not redistribute this template ZIP file for a template download purpose on any other website such as Free CSS collection websites.
-                                  </p>-->
-                            </div>
-
-                            <!--<div class="social-share d-flex mt-5">
-                                <span class="me-4" data-aos="zoom-in">Share this article:</span>
-
-                                <a href="#" class="social-share-icon bi-facebook" data-aos="zoom-in"></a>
-
-                                <a href="#" class="social-share-icon bi-twitter mx-3" data-aos="zoom-in"></a>
-
-                                <a href="#" class="social-share-icon bi-envelope" data-aos="zoom-in"></a>
-                            </div>-->
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-  <section class="news section-padding" id="go">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-12 mx-auto">
-                <form action="https://script.google.com/macros/s/AKfycbxl1vEf_LcrBMCk0-cJaNniIrjMcDymvpiMND2NE197SABm3jBpMwBMckZN7QJ_wHxz/exec" method="post" class="contact-form" role="form" data-aos="fade-up">
-                    <!-- Section 1: Personal Information -->
-                    <div class="step" id="step1">
-                        <h2 class="mb-4 text-center" data-aos="fade-up">Getting to Know You!</h2>
-                        <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
-                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required>
-                        <br>
-                        <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
-                        <br>
-                        <label for="employment-type" class="form-label">Employment Type <sup class="text-danger">*</sup></label>
-                        <select name="employment-type" id="employment-type" class="form-control" required>
-                          <option value="" disabled selected>Select</option>
-                          <option value="Salaried">Salaried</option>
-                          <option value="Non-Salaried">Non-Salaried</option>
-                        </select>
-                        <br>
-                        <button type="button" onclick="prevStep(1)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(2)" class="arrow-btn next-btn" id="next-button-section1">Next &#8594;</button>
-                        <div class="page-number text-center">1/4</div>
-                    </div>
-
-                    <!-- Section 2: Credit Card Usage -->
-                    <div class="step" id="step2">
-                        <h2 class="mb-4 text-center" data-aos="fade-up">Getting to Know You!</h2>
-                        <label for="credit-card-usage" class="form-label">What do you want to use your Credit Card for? <sup class="text-danger">*</sup></label>
-                        <select name="credit-card-usage" id="credit-card-usage" class="form-control" required>
-                            <option value="" disabled selected>Select</option>
-                            <option value="Nothing Specific">Nothing Specific</option>
-                            <option value="Lifestyle">Lifestyle</option>
-                            <option value="Fuel">Fuel</option>
-                            <option value="Cashback/ Rewards">Cashback/ Rewards</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Airport Lounge">Airport Lounges</option>
-                            <option value="Food">Food</option>
-                            <option value="Health & Wellness">Health & Wellness</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Luxury">Luxury</option>
-                            <option value="Forex">Forex</option>
-                            <option value="FinTech">FinTech</option>
-                        </select>
-                        <br>
-                        <label for="joining-fee-restriction" class="form-label">Any specific restrictions on Joining Fee? <sup class="text-danger">*</sup></label>
-                        <select name="joining-fee-restriction" id="joining-fee-restriction" class="form-control" required>
-                            <option value="" disabled selected>Select</option>
-                            <option value="None">None</option>
-                            <option value="0">0</option>
-                            <option value="500">500</option>
-                            <option value="750">750</option>
-                            <option value="1000">1000</option>
-                            <option value="1500">1500</option>
-                        </select>
-                        <br>
-                        <label for="annual-salary" class="form-label">Where does the Fixed Component of your Salary fall? <sup class="text-danger">*</sup></label>
-                        <select name="annual-salary" id="annual-salary" class="form-control" required>
-                            <option value="" disabled selected>Select</option>
-                            <option value="0">NA</option>
-                            <option value="649999">Less than 6.5 Lakhs</option>
-                            <option value="1200000">6.5 to 11 Lakhs</option>
-                            <option value="1800000">12 to 17 Lakhs</option>
-                            <option value="2400000">18 to 23 Lakhs</option>
-                            <option value="3000000">24 to 29 Lakhs</option>
-                            <option value="4000000">30 to 39 Lakhs</option>
-                            <option value="10000000">> 40 Lakhs</option>
-                        </select>
-                        <br>
-                        <!--<label for="annual-salary" class="form-label">Fixed Component of your Annual Salary (in lakhs) <sup class="text-danger">*</sup></label>
-                        <input type="number" name="annual-salary" id="annual-salary" class="form-control" placeholder="Eg. 6000000" required>
-                        <br>-->
-                        <button type="button" onclick="prevStep(1)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(3)" class="arrow-btn next-btn" id="next-button-section2">Next &#8594;</button>
-                        <div class="page-number text-center">2/4</div>
-                    </div>
-
-                    <!-- Section 3: Credit Score and Late Payment History -->
-                    <div class="step" id="step3">
-                        <h2 class="mb-4 text-center" data-aos="fade-up">Your Credit Handling</h2>
-                        <label for="credit-score" class="form-label">Credit Score (its optional but you can check your credit score <u><i><a href="https://creditreport.paisabazaar.com/credit-report/apply?utm_source=google_brand&utm_medium=ppc0paisabazaar&utm_term=paisabazaar%20cibil&utm_campaign=Paisabazaar_CS_Desktop00Cibil_Exact_Desktop&Campaign=771973089&Adgroupid=40110799906&Loc_Inte=&Loc_Phys=9061695&Matchtype=e&Network=g&Device=c&Devicemodel=&Gclid=CjwKCAjwivemBhBhEiwAJxNWN50Nm9okqbE24XlFQ9FS-tomcrTzX8kj9dLvlo1PJSS6yJveeFjtgRoCtAMQAvD_BwE&Keyword=paisabazaar%20cibil&Placement=&Adpos=&gclid=CjwKCAjwivemBhBhEiwAJxNWN50Nm9okqbE24XlFQ9FS-tomcrTzX8kj9dLvlo1PJSS6yJveeFjtgRoCtAMQAvD_BwE" target="_blank">here</a></i></u>)</label>
-                        <input type="number" name="credit-score" id="credit-score" class="form-control" placeholder="Your credit score">
-                        <br>
-                        <label for="late-payment-history" class="form-label">How many times have you been charged a late payment fee for a bill (any kind of bill)?</label>
-                        <select name="late-payment-history" id="late-payment-history" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <option value="Never">Never</option>
-                            <option value="Only once">Only once</option>
-                            <option value="More than twice">More than twice</option>
-                            <option value="4 times and strong xD">4 times and strong xD</option>
-                            <option value="Lost the count xP">Lost the count xP</option>
-                        </select>
-                        <br>
-                        <label for="average-spends" class="form-label">What are your average spends in a month? (in Rupees)</label>
-                        <select name="average-spends" id="average-spends" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <option value="<1000">< ₹1000</option>
-                            <option value="<2500">< ₹2500</option>
-                            <option value="<5000">< ₹5000</option>
-                            <option value=">5000">> ₹5000</option>
-                        </select>
-                        <br>
-                        <button type="button" onclick="prevStep(2)" class="arrow-btn">&#8592; Previous</button>
-                        <button type="button" onclick="nextStep(4)" class="arrow-btn next-btn"id="next-button-section4">Next &#8594;</button>
-                        <div class="page-number text-center">3/4</div>
-                    </div>
-
-                    <!-- Section 4: Current Credit Cards and Credit History -->
-                    <div class="step" id="step4">
-                        <h2 class="mb-4 text-center" data-aos="fade-up">Your Credit History</h2>
-                        <label for="current-credit-cards" class="form-label">Do you have any credit card right now?</label>
-                        <select name="current-credit-cards" id="current-credit-cards" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <option value="No">No</option>
-                            <option value="Yes, I have 1">Yes, I have 1</option>
-                            <option value="Yes, I have more than 1">Yes, I have more than 1</option>
-                        </select>
-                        <br>
-                        <label for="credit-history" class="form-label">Have you ever taken credit (other than credit card)?</label>
-                        <select name="credit-history" id="credit-history" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <br>
-                        <button type="button" onclick="prevStep(3)" class="arrow-btn">&#8592; Previous</button>
-                        <br>
-                        <!--<div class="page-number text-center">4/4</div>
-                        <div class="col-lg-5 col-12 mx-auto mt-5">
-                          <div class="g-recaptcha" data-sitekey="6LdAO5IpAAAAAK15Z3BLJcBoKoiZpqKz-oMtKW0u"></div>
-                        </div>-->
-                        <div class="col-lg-5 col-12 mx-auto mt-5">
-                            <button type="submit" onclick="validateForm()" class="form-control">Submit</button>
-                            <div id="caution-message" class="text-danger text-center"></div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class=" contact section-padding" id="contact">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-7 col-12 mx-auto">
-
-                <h2 class="mb-4 text-center" data-aos="fade-up"> Have questions or need assistance? Write to Us</h2>
-
-                <form action="https://formspree.io/f/xrgwpagz" method="post" class="contact-form" role="form" data-aos="fade-up">
-
-                    <div class="row">
-
-                        <div class="col-lg-6 col-6">
-                            <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
-
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
-                        </div>
-
-                        <div class="col-lg-6 col-6">
-                            <label for="email" class="form-label">Email <sup class="text-danger">*</sup></label>
-
-                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
-                        </div>
-
-                        <div class="col-12 my-4">
-                            <label for="message" class="form-label">Subject<sup class="text-danger">*</sup></label>
-
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-
-                        </div>
-
-                        <div class="col-12 my-4">
-                            <label for="message" class="form-label">How can we help?</label>
-
-                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Tell us about your query" required></textarea>
-
-                        </div>
-
-                        <!--<div class="col-12">
-                            <label for="services" class="form-label">Services<sup class="text-danger">*</sup></label>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="form-check">
-                                <input type="checkbox" id="checkbox1" name="checkbox1" class="form-check-input">
-
-                                <label class="form-check-label" for="checkbox1">Branding</label>
-                              </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12 my-2 my-lg-0">
-                            <div class="form-check">
-                                <input type="checkbox" id="checkbox2" name="checkbox2" class="form-check-input">
-
-                                <label class="form-check-label" for="checkbox2">Digital Experiences</label>
-                              </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="form-check">
-                                <input type="checkbox" id="checkbox3" name="checkbox3" class="form-check-input">
-
-                                <label class="form-check-label" for="checkbox3">Web Development</label>
-                              </div>
-                        </div>-->
-                    </div>
-
-                    <div class="col-lg-5 col-12 mx-auto mt-5">
-                        <button type="submit" class="form-control">Send Message</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</section>
-        </main>
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-12">
-                        <h5 class="text-white">
-                            <i class="bi-geo-alt-fill me-2"></i>
-                            Delhi, India
-                        </h5>
-
-                        <a href="mailto:cardology@farewealth.in" class="custom-link mt-3 mb-5">
-                            cardology@farewealth.in;
-                        </a>
-                        <a href="tel://+919315964611" class="custom-link mt-3 mb-5">
-                            +91-9315964611
-                        </a>
-                    </div>
-
-                    <div class="col-6">
-                        <p class="copyright-text mb-0">Trademark™ <a target="blank" href="https://aamm.co.in/">AamM Enterprises LLP</a> <script>document.write(new Date().getFullYear());</script>
-
-                      <!--  <br><br>Design: <a href="https://templatemo.com/page/1" target="_parent">TemplateMo</a></p>-->
-
-                    </div>
-
-                    <div class="col-lg-3 col-5 ms-auto">
-                        <ul class="social-icon">
-                            <!--<li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-twitter"></a></li>-->
-
-                            <li><a href="https://bit.ly/sayhiFW" class="social-icon-link bi-whatsapp"></a></li>
-
-                            <li><a href="https://www.instagram.com/fare.wealth/" class="social-icon-link bi-instagram"></a></li>
-
-                            <li><a href="https://www.linkedin.com/company/farewealth" class="social-icon-link bi-linkedin"></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </section>
-        </footer>
-
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/aos.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/magnific-popup-options.js"></script>
-        <script src="js/scrollspy.min.js"></script>
-        <script src="js/custom.js"></script>
-        <script>
-        let currentStep = 1;
-
-        function nextStep(step) {
-          document.getElementById(`step${currentStep}`).style.display = "none";
-          currentStep = step;
-          document.getElementById(`step${currentStep}`).style.display = "block";
-        }
-
-        function prevStep(step) {
-          document.getElementById(`step${currentStep}`).style.display = "none";
-          currentStep = step;
-          document.getElementById(`step${currentStep}`).style.display = "block";
-        }
-
-        // Initially, only show the first step
-        document.getElementById("step2").style.display = "none";
-        document.getElementById("step3").style.display = "none";
-        document.getElementById("step4").style.display = "none";
-        </script>
-
-        <script type="application/ld+json">
-        {
-          "@context": "http://schema.org",
-          "@type": "Organization",
-          "name": "FareWealth",
-          "url": "https://farewealth.in/",
-          "logo": "https://farewealth.in/images/hero-bg2.jpg",
-          "description": "India's leading credit card recommendation platform",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Delhi",
-            "addressLocality": "New Delhi",
-            "addressRegion": "Delhi",
-            "postalCode": "110063",
-            "addressCountry": "India"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Customer Support",
-            "telephone": "+91-9315964611",
-            "email": "cardology@farewealth.in"
-          }
-        }
-        </script>
-
-    </body>
+</body>
 </html>
-
-
-
-
