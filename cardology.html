@@ -60,6 +60,25 @@ header a.tg:hover { color: var(--ink); }
   background: var(--brand); color: var(--brand-ink); text-decoration: none; font-weight: 700; font-size: 14.5px; }
 .card .apply:hover { filter: brightness(1.08); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 14px; }
+.qcard { max-width: 92%; background: var(--surface); border-radius: 16px; border-top-left-radius: 6px;
+  box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--accent); }
+.qcard .qtext { font-weight: 700; font-size: 16px; line-height: 1.45; white-space: pre-line; overflow-wrap: anywhere; }
+.qcard .qtext i { font-weight: 400; color: var(--muted); font-size: 14px; }
+.qcard .hint { margin-top: 4px; font-size: 12.5px; color: var(--muted); }
+.qcard .opts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.qcard .opt { font: inherit; font-size: 14px; font-weight: 500; border: 1px solid var(--line); background: var(--chip);
+  color: var(--ink); padding: 9px 14px; border-radius: 10px; cursor: pointer; text-align: left;
+  transition: background .15s, border-color .15s, color .15s; }
+.qcard .opt:hover { border-color: var(--brand); background: var(--surface); }
+.qcard .opt.on, .qcard .opt.on:hover { background: var(--chip-on); color: var(--brand-ink); border-color: var(--chip-on); }
+.qcard .opt.on::before { content: "✓ "; }
+.qcard .opt.done, .qcard .opt.done:hover { background: var(--accent); color: #15181d; border-color: var(--accent); font-weight: 700; }
+.qcard .opt[disabled] { opacity: .45; cursor: default; }
+.qcard .qfoot { display: flex; gap: 14px; margin-top: 10px; }
+.qcard .link { font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; padding: 2px 0; cursor: pointer; }
+.qcard .link:hover { color: var(--ink); text-decoration: underline; }
+.qcard.answered { padding: 11px 14px; }
+.qcard.answered .qtext { font-weight: 500; font-size: 15px; }
 .chip { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
   padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: background .15s, border-color .15s; }
 .chip:hover { border-color: var(--brand); }
@@ -108,7 +127,12 @@ try { sid = localStorage.getItem("cardology_sid"); } catch (e) {}
 
 function scroll() { requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; }); }
 function el(tag, cls, html) { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; }
-function clearChips() { log.querySelectorAll(".chips.live").forEach(c => c.remove()); }
+function clearChips() {
+  log.querySelectorAll(".chips.live").forEach(c => c.remove());
+  log.querySelectorAll(".qcard.live").forEach(q => {          // answered: keep just the question
+    q.querySelectorAll(".opts, .qfoot, .hint").forEach(x => x.remove()); q.classList.remove("live"); q.classList.add("answered");
+  });
+}
 
 function addBot(html) { const r = el("div", "row"); r.appendChild(el("div", "bubble", html)); log.appendChild(r); }
 function addPlain(text) { const r = el("div", "row"); const b = el("div", "bubble"); b.textContent = text; r.appendChild(b); log.appendChild(r); }
@@ -167,32 +191,36 @@ function render(d) {
 }
 
 function renderPrompt(p) {
-  addBot(p.html + (p.kind === "multi" ? "\n<i>Tap to select" + (p.max ? ` (up to ${p.max})` : "") + ", then Done.</i>" : ""));
-  const c = el("div", "chips live");
+  const row = el("div", "row"), card = el("div", "qcard live");
+  card.appendChild(el("div", "qtext", p.html));
+  if (p.kind === "multi") card.appendChild(el("div", "hint", /pick/i.test(p.html) ? "Then tap Done." : "Pick all that apply, then tap Done."));
+  const opts = el("div", "opts"), foot = el("div", "qfoot");
   if (p.kind === "single") {
-    p.options.forEach((label, i) => { const b = el("button", "chip", label);
+    p.options.forEach((label, i) => { const b = el("button", "opt", label);
       b.onclick = () => send({ action: "answer", qid: p.qid, index: i }, label, lastQuestion(p) ? "Crunching the numbers…" : null);
-      c.appendChild(b); });
+      opts.appendChild(b); });
   } else if (p.kind === "multi") {
     const picked = [];
-    const done = el("button", "chip primary", "Done →"); done.disabled = true;
-    p.options.forEach((label, i) => { const b = el("button", "chip", label);
+    const done = el("button", "opt done", "Done →"); done.disabled = true;
+    p.options.forEach((label, i) => { const b = el("button", "opt", label);
       b.onclick = () => {
         const k = picked.indexOf(i);
         if (k >= 0) { picked.splice(k, 1); b.classList.remove("on"); }
         else { if (p.max && picked.length >= p.max) return; picked.push(i); b.classList.add("on"); }
         done.disabled = !picked.length;
       };
-      c.appendChild(b); });
+      opts.appendChild(b); });
     done.onclick = () => send({ action: "answer", qid: p.qid, indices: picked }, picked.map(i => p.options[i]).join(", "));
-    c.appendChild(done);
+    opts.appendChild(done);
   } else if (p.kind === "text" && p.skip_label) {
-    const b = el("button", "chip ghost", p.skip_label + " →");
+    const b = el("button", "link", p.skip_label + " →");
     b.onclick = () => send({ action: "answer", qid: p.qid, skip: true }, p.skip_label, lastQuestion(p) ? "Crunching the numbers…" : null);
-    c.appendChild(b);
+    foot.appendChild(b);
   }
-  if (p.can_back) { const b = el("button", "chip ghost", "← Back"); b.onclick = () => send({ action: "back" }); c.appendChild(b); }
-  log.appendChild(c);
+  if (opts.children.length) card.appendChild(opts);
+  if (p.can_back) { const b = el("button", "link", "← Back"); b.onclick = () => send({ action: "back" }); foot.appendChild(b); }
+  if (foot.children.length) card.appendChild(foot);
+  row.appendChild(card); log.appendChild(row);
 }
 function lastQuestion(p) { return p.qid === "notes"; }
 
