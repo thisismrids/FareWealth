@@ -37,9 +37,10 @@ header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; bord
 header img { height: 38px; width: auto; }
 header h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .2px; }
 header p { margin: 0; font-size: 12.5px; color: var(--muted); }
-header a.tg { margin-left: auto; font-size: 12.5px; color: var(--muted); text-decoration: none; border: 1px solid var(--line);
-  padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
-header a.tg:hover { color: var(--ink); }
+header a.fw { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--muted);
+  text-decoration: none; border: 1px solid var(--line); padding: 5px 10px 5px 12px; border-radius: 999px; white-space: nowrap; }
+header a.fw img { height: 20px; width: 20px; display: block; }
+header a.fw:hover { color: var(--ink); border-color: var(--accent); }
 #log { flex: 1; overflow-y: auto; padding: 18px 16px 8px; scroll-behavior: smooth; }
 .row { display: flex; margin: 0 0 10px; }
 .row.user { justify-content: flex-end; }
@@ -100,6 +101,8 @@ form input:focus { border-color: var(--brand); }
 form button { font: inherit; font-weight: 700; border: 0; border-radius: 12px; padding: 0 16px; background: var(--brand);
   color: var(--brand-ink); cursor: pointer; }
 footer { text-align: center; font-size: 11.5px; color: var(--muted); padding: 0 16px 10px; }
+footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+footer a:hover { color: var(--ink); }
 /* --- Splash: logo splits (left card left, right card right), the heart zooms in, then the chat appears --- */
 #splash { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 18px; padding: 24px 16px; text-align: center; background: var(--bg);
@@ -124,7 +127,7 @@ footer { text-align: center; font-size: 11.5px; color: var(--muted); padding: 0 
   .split .piece, .split .heart, #splash { transition: opacity .4s ease; }
   #splash.go .left, #splash.go .right, #splash.go .heart { transform: none; }
 }
-@media (max-width: 520px) { body { font-size: 15px; } .bubble, .card { max-width: 96%; } header a.tg span { display: none; } }
+@media (max-width: 520px) { body { font-size: 15px; } .bubble, .card { max-width: 96%; } }
 </style>
 </head>
 <body>
@@ -142,14 +145,14 @@ footer { text-align: center; font-size: 11.5px; color: var(--muted); padding: 0 
   <header>
     <img id="logo" alt="FareWealth">
     <div><h1>Cardology</h1><p>Find the cards that pay you the most</p></div>
-    <a class="tg" href="https://t.me/cardology_bot" target="_blank" rel="noopener">✈︎ <span>Also on </span>Telegram</a>
+    <a class="fw" href="https://farewealth.in" target="_blank" rel="noopener" title="FareWealth">Explore <img src="https://farewealth.in/images/tabicon.png" alt="FareWealth"></a>
   </header>
   <main id="log" aria-live="polite"></main>
   <form id="bar" hidden autocomplete="off">
     <input id="inp" type="text" placeholder="Type here…" maxlength="500" aria-label="Message">
     <button type="submit" aria-label="Send">Send</button>
   </form>
-  <footer>Cardology™ · AamM Enterprises LLP</footer>
+  <footer>Cardology™ · <a href="https://aamm.co.in" target="_blank" rel="noopener">AamM Enterprises LLP</a></footer>
 </div>
 <script>
 const host = location.hostname;
