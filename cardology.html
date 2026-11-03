@@ -100,10 +100,44 @@ form input:focus { border-color: var(--brand); }
 form button { font: inherit; font-weight: 700; border: 0; border-radius: 12px; padding: 0 16px; background: var(--brand);
   color: var(--brand-ink); cursor: pointer; }
 footer { text-align: center; font-size: 11.5px; color: var(--muted); padding: 0 16px 10px; }
+/* --- Splash: logo splits (left card left, right card right), the heart zooms in, then the chat appears --- */
+#splash { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 18px; padding: 24px 16px; text-align: center; background: var(--bg);
+  transition: opacity .55s ease .55s, visibility 0s linear 1.1s; }
+#splash.gone { opacity: 0; visibility: hidden; pointer-events: none; }
+.split { position: relative; width: min(260px, 62vw); aspect-ratio: 886 / 696; }
+.split .piece { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat;
+  transition: transform 1s cubic-bezier(.65, 0, .35, 1), opacity .8s ease .2s; will-change: transform; }
+.split .heart { transition: transform 1.05s cubic-bezier(.55, 0, .45, 1) .1s, opacity .45s ease .7s; }
+#splash.go .left { transform: translateX(-75vw) rotate(-14deg); opacity: 0; }
+#splash.go .right { transform: translateX(75vw) rotate(14deg); opacity: 0; }
+#splash.go .heart { transform: scale(16); opacity: 0; }
+#splash.go .stext, #splash.go .begin { opacity: 0; transform: translateY(8px); }
+.stext h2 { margin: 6px 0 4px; font-size: clamp(26px, 6vw, 34px); font-weight: 900; letter-spacing: .3px; }
+.stext p { margin: 0 auto; max-width: 420px; font-size: clamp(15px, 4vw, 17px); color: var(--muted); line-height: 1.5; }
+.stext, .begin { transition: opacity .3s ease, transform .3s ease; }
+.begin { font: inherit; font-weight: 700; font-size: 16px; border: 0; border-radius: 999px; padding: 13px 34px;
+  background: var(--brand); color: var(--brand-ink); cursor: pointer; box-shadow: var(--shadow); }
+.begin:hover { filter: brightness(1.08); }
+.begin:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .split .piece, .split .heart, #splash { transition: opacity .4s ease; }
+  #splash.go .left, #splash.go .right, #splash.go .heart { transform: none; }
+}
 @media (max-width: 520px) { body { font-size: 15px; } .bubble, .card { max-width: 96%; } header a.tg span { display: none; } }
 </style>
 </head>
 <body>
+<div id="splash" role="dialog" aria-label="Welcome to Cardology">
+  <div class="split" aria-hidden="true">
+    <div class="piece left"></div><div class="piece right"></div><div class="piece heart"></div>
+  </div>
+  <div class="stext">
+    <h2>Cardology</h2>
+    <p>Ready to jump on the quest to find your perfect credit card?</p>
+  </div>
+  <button class="begin" id="begin">Begin</button>
+</div>
 <div class="app">
   <header>
     <img id="logo" alt="FareWealth">
@@ -239,7 +273,40 @@ bar.addEventListener("submit", e => {
   else send({ action: "text", text }, text, state.input.mode === "followup" ? "Thinking…" : null);
 });
 
-send({ action: "start" });
+// Splash: three copies of the logo, each clipped to one piece. The heart's outline is cut out of both
+// card halves (even-odd clip) so nothing doubles up when the cards slide apart.
+(function splash() {
+  const sp = document.getElementById("splash"), box = sp.querySelector(".split");
+  const url = `url("${API}/assets/farewealth_logo.png?v=2")`;
+  const FOLD = 0.497, HX = 0.497, HY = 0.525, PAD = 1.04;                  // fractions of the logo box
+  // Heart outline (incl. its white rim) traced off the logo, in % of the logo box: two lobes + a tip.
+  const HEART = [[49.7, 42], [46, 37, 37.4, 37.5, 37.6, 47.3], [37.8, 52, 40, 54.5, 49.7, 67.3],
+                 [59.4, 54.5, 61.6, 52, 61.8, 47.3], [62, 37.5, 53.4, 37, 49.7, 42]];
+  // Whole heart, or just the half left/right of the fold (notch and tip sit on the fold line).
+  function heart(W, H, half) {
+    const pt = (x, y) => `${((HX + (x / 100 - HX) * PAD) * W).toFixed(1)} ${((HY + (y / 100 - HY) * PAD) * H).toFixed(1)}`;
+    const cs = half === "left" ? HEART.slice(1, 3) : half === "right" ? HEART.slice(3) : HEART.slice(1);
+    const start = half === "right" ? HEART[2].slice(4) : HEART[0];
+    return `M ${pt(...start)} ` + cs.map(c => `C ${pt(c[0], c[1])} ${pt(c[2], c[3])} ${pt(c[4], c[5])}`).join(" ") + " Z";
+  }
+  function clip() {
+    const W = box.clientWidth, H = box.clientHeight, f = FOLD * W;
+    const set = (sel, d) => { const n = box.querySelector(sel); n.style.backgroundImage = url;
+      n.style.clipPath = `path(evenodd, "${d}")`; n.style.webkitClipPath = n.style.clipPath; };
+    set(".left", `M 0 0 H ${f} V ${H} H 0 Z ${heart(W, H, "left")}`);
+    set(".right", `M ${f} 0 H ${W} V ${H} H ${f} Z ${heart(W, H, "right")}`);
+    set(".heart", heart(W, H));
+    box.querySelector(".heart").style.transformOrigin = `${HX * 100}% ${HY * 100}%`;
+  }
+  clip(); addEventListener("resize", clip);
+  document.getElementById("begin").addEventListener("click", () => {
+    sp.classList.add("go", "gone");
+    setTimeout(() => { sp.remove(); if (state.input.mode !== "none" && matchMedia("(pointer: fine)").matches) inp.focus(); }, 1150);
+  });
+  document.getElementById("begin").focus();
+})();
+
+send({ action: "start" });                     // the chat loads behind the splash, so it's ready on Begin
 </script>
 </body>
 </html>
